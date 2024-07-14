@@ -1,0 +1,53 @@
+{% extends 'base_en.html' %}
+{% load static %}
+
+
+{% block main %}
+{% include 'components/_cart_modal_en.html' %}
+
+{% include 'components/header/_header_other_en.html' %}
+
+<main class="swiper-main">
+    {% if collections %}
+    <!--        Пройтись по коллекциям-->
+    {% for collection in collections %}
+      <div class="container">
+            <div class="swiper-text">
+                <h2 class="swiper-text&#45;&#45;first">Collection</h2> <!--Статично-->
+                <h2 class="swiper-text--second">“{{ collection.name_en }}”</h2> <!--Название коллекции-->
+            </div>
+        </div>
+    <div class="swiper mySwiper" id="collection_{{ collection.pk }}">
+  
+        <div class="swiper-wrapper">
+            <!--                Слайды с товарами коллекции-->
+            {% for item in collection.items.all %}
+            <div class="swiper-slide">
+                <div class="swiper-slide-img-c" onclick="document.location.href='{% url 'third_page_en' item.pk %}'">
+                    <img src="{{ item.get_image }}"/>  <!--Фотка товара -->
+                    <a href="{% url 'third_page_en' item.pk %}" class="swiper-slide--hovertext">Go to catalogue</a>
+                    <!--Изменить на ссылку в каталог товара-->
+                </div>
+                <div class="swiper-slide--text-b">
+                    <span class="swiper-slide--text">{{ item.name_en }}</span>  <!--Название товара-->
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <a class="main__content-btn" href="{% url 'second_page_en' %}">Show all collections</a>
+
+    {% endfor %}
+    {% else %}
+    <div class="swiper-text">
+        <h2 class="swiper-text&#45;&#45;first">No results were found for your request</h2> <!--Статично-->
+        <a class="main__content-btn" href="{% url 'second_page_en' %}">Show all collections</a>
+    </div>
+    {% endif %}
+    <!--        Заканчиваем-->
+
+
+    {% include 'components/_acham_line_en.html' %}
+
+</main>
+{% endblock main %}

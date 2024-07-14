@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block main %}
+{% include 'components/_cart_modal.html' %}
+
+{% include 'components/header/_header_index.html' %}
+    <main>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                {% for item in items %}
+                <div class="swiper-slide">
+                    <div class="swiper-slide-img-c"  onclick="document.location.href='{% url 'second_page' %}'">
+                        <img src="{{ item.get_image }}"/>
+                        <a href="{% url 'third_page' item.pk %}" class="swiper-slide--hovertext">Перейти в каталог</a>
+                    </div>
+                    <div class="swiper-slide--text-b">
+                        <span class="swiper-slide--text">{{ item.name }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="main__subcontent">
+            <div class="container">
+                <div class="main__subcontent-show">
+                    {% for collection in collections %}
+                    <a href="{% url 'second_page' %}#collection_{{ collection.pk }}" class="main__subcontent-show--block">
+                        <img src="{{ collection.get_image }}" alt="">
+                        <span class="main__subcontent-show--block---text">{{ collection.name }}</span>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <a class="main__content-btn" href="{% url 'second_page' %}">Перейти в каталог</a>
+        </div>
+        {% include 'components/_acham_line.html' %}
+
+    </main>
+{% endblock main %}

@@ -1,0 +1,69 @@
+{% extends 'base_en.html' %}
+{% load static %}
+
+
+{% block main %}
+{% include 'components/_cart_modal_en.html' %}
+
+{% include 'components/header/_header_other_en.html' %}
+
+<main class="swiper-main">
+        <div class="main__card">
+            <div class="container">
+<!--                Сам товар-->
+                <div class="main__card-info">
+                    <div class="main__card-info--img">
+                        <img src="{{ item.get_image }}" alt="">
+                    </div>
+                    <div class="main__card-info--info">
+                        <h2 class="main__card-info--info---title">{{ item.name_en }}</h2>
+                        <div class="main__card-info--info---material">
+                            <span>Material</span>
+                            <span>{{ item.material.name_en }}</span>
+                        </div>
+                        <p class="main__card-info--info---text">{{ item.description_en }}</p>
+                        <!-- <div class="main__card-info--info---size">
+                            <span>Выбор размера</span>
+                            <ul>
+                                <li class="size active">XS</li>
+                                <li class="size">S</li>
+                                <li class="size">M</li>
+                                <li class="size">L</li>
+                                <li class="size">XL</li>
+                            </ul>
+                        </div> -->
+                        <div class="main__card-info--info---btns">
+                            <form action="{% url 'cart_add_en' item.id %}" method="post" style="width: 100%;">
+                                 {% csrf_token %}
+                                <input type="submit"  value="Add to Shopping cart" class="btn1">
+                            </form>
+                            <a href="#" class="btn2">Arrange delivery</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper mySwiper">
+            <!-- <div class="container">
+                <div class="swiper-text">
+                    <h2 class="swiper-text--first">Коллекция</h2>
+                    <h2 class="swiper-text--second">“Весна 2024”</h2>
+                </div>
+            </div> -->
+            <div class="swiper-wrapper">
+                {% for swiper_item in items %}
+                <div class="swiper-slide">
+                    <div class="swiper-slide-img-c" onclick="document.location.href='{% url 'third_page_en' swiper_item.pk %}'">
+                        <img src="{{ swiper_item.get_image }}" />
+                        <a href="{% url 'third_page_en' swiper_item.pk %}" class="swiper-slide--hovertext">Go to catalogue</a>
+                    </div>
+                    <div class="swiper-slide--text-b">
+                        <span class="swiper-slide--text">{{ swiper_item.name_en }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% include 'components/_acham_line_en.html' %}
+    </main>
+{% endblock main %}

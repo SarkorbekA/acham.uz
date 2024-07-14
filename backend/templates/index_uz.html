@@ -1,0 +1,41 @@
+{% extends 'base_uz.html' %}
+
+{% load static %}
+
+{% block main %}
+{% include 'components/_cart_modal_uz.html' %}
+
+{% include 'components/header/_header_index_uz.html' %}
+    <main>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                {% for item in items %}
+                <div class="swiper-slide">
+                    <div class="swiper-slide-img-c" onclick="document.location.href='{% url 'second_page_uz' %}'">
+                        <img src="{{ item.get_image }}"/>
+                        <a href="{% url 'third_page_uz' item.pk %}" class="swiper-slide--hovertext">Katalogga o'tish</a>
+                    </div>
+                    <div class="swiper-slide--text-b">
+                        <span class="swiper-slide--text">{{ item.name_uz }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="main__subcontent">
+            <div class="container">
+                <div class="main__subcontent-show">
+                    {% for collection in collections %}
+                    <a href="{% url 'second_page_uz' %}#collection_{{ collection.pk }}" class="main__subcontent-show--block">
+                        <img src="{{ collection.get_image }}" alt="">
+                        <span class="main__subcontent-show--block---text">{{ collection.name_uz }}</span>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <a class="main__content-btn" href="{% url 'second_page_uz' %}">Katalogga o'tish</a>
+        </div>
+        {% include 'components/_acham_line_uz.html' %}
+
+    </main>
+{% endblock main %}

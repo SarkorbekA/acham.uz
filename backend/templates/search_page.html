@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block main %}
+{% include 'components/_cart_modal.html' %}
+
+{% include 'components/header/_header_other.html' %}
+
+<main class="swiper-main">
+    {% if collections %}
+    <!--        Пройтись по коллекциям-->
+    {% for collection in collections %}
+    <div class="container">
+            <div class="swiper-text">
+                <h2 class="swiper-text&#45;&#45;first">Коллекция</h2> <!--Статично-->
+                <h2 class="swiper-text--second">“{{ collection.name }}”</h2> <!--Название коллекции-->
+            </div>
+        </div>
+    <div class="swiper mySwiper" id="collection_{{ collection.pk }}">
+        
+        <div class="swiper-wrapper">
+            <!--                Слайды с товарами коллекции-->
+            {% for item in collection.items.all %}
+            <div class="swiper-slide">
+                <div class="swiper-slide-img-c" onclick="document.location.href='{% url 'third_page' item.pk %}'">
+                    <img src="{{ item.get_image }}"/>  <!--Фотка товара -->
+                    <a href="{% url 'third_page' item.pk %}" class="swiper-slide--hovertext">Перейти в каталог</a>
+                    <!--Изменить на ссылку в каталог товара-->
+                </div>
+                <div class="swiper-slide--text-b">
+                    <span class="swiper-slide--text">{{ item.name }}</span>  <!--Название товара-->
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <a class="main__content-btn" href="{% url 'second_page' %}">Посмотреть все коллекции</a>
+
+    {% endfor %}
+    {% else %}
+    <div class="swiper-text">
+        <h2 class="swiper-text&#45;&#45;first">По вашему запросу ничего не найдено</h2> <!--Статично-->
+        <a class="main__content-btn" href="{% url 'second_page' %}">Посмотреть все коллекции</a>
+    </div>
+    {% endif %}
+    <!--        Заканчиваем-->
+
+
+    {% include 'components/_acham_line.html' %}
+
+</main>
+{% endblock main %}
