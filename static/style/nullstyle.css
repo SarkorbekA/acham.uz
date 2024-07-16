@@ -87,6 +87,16 @@ h6 {
     font-weight: inherit;
 }
 
+html::-webkit-scrollbar {
+    width: 8px;
+    background-color: #FFFFFF;
+}
+
+html::-webkit-scrollbar-thumb {
+    background-color: #000000;
+}
+
+
 /*--------------------*/
 
 /* MyStyle */

@@ -15,7 +15,7 @@
 }
 
 @font-face {
-    font-family: 'Century', 'sans-serif';
-    src: url(../fonts/CenturyGothicW05-Regular.woff2);
+    font-family: 'Century';
+    src: url(../fonts/Century.otf);
     font-weight: 400;
 }

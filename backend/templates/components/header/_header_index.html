@@ -20,8 +20,10 @@
             </a>
             <div class="header-right">
                 <ul class="header__content-lang">
-                    <a href="{% url 'index_en' %}" class="header__content-lang--choose" style="text-decoration: underline;">En</a>
-                    <a href="{% url 'index_uz' %}" class="header__content-lang--choose" style="text-decoration: underline;">Uz</a>
+                    <a href="{% url 'index_en' %}" class="header__content-lang--choose"
+                       style="text-decoration: underline;">En</a>
+                    <a href="{% url 'index_uz' %}" class="header__content-lang--choose"
+                       style="text-decoration: underline;">Uz</a>
                 </ul>
                 <div class="header__content-cart cart-btn">
                     <span>Корзина({{ cart|length }})</span>
@@ -34,19 +36,21 @@
             </div>
         </nav>
     </div>
+
+
     <div class="header__search">
-       <video playsinline loop autoplay muted preload="auto" id="video-bg">
-                <source src="{% static 'videos/output.webm' %}" type="video/mp4">
+        <video playsinline loop autoplay muted preload="auto" id="video-bg">
+            <source src="{% static 'videos/output.webm' %}" type="video/mp4">
         </video>
         <div class="header__search-search">
             <div class="container-neo">
                 <div class="header__search-search--search">
                     <form action="{% url 'search_collections' %}" method="GET" style="
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-">
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    ">
                         <button type="submit" style="background: none;">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -68,18 +72,6 @@
         </div>
     </div>
 
-    <div class="burger">
-        <ul class="burger__list">
-            <li class="burger__list--link"><a href="{% url 'index' %}">Главная</a></li>
-            <li class="burger__list--link"><a href="{% url 'fourth_page' %}">О бренде</a></li>
-            <li class="burger__list--link"><a href="{% url 'second_page' %}">Каталог</a></li>
-        </ul>
-        <ul class="burger__list">
-            <li class="burger__list--link"><a href="#" class="cart-btn">Корзина ({{ cart|length }})</a></li>
-        </ul>
-        <ul class="burger__list">
-            <li class="burger__list--link"><a href="{% url 'index_en' %}" style="text-decoration: underline;">En</a></li>
-            <li class="burger__list--link"><a href="{% url 'index_uz' %}" style="text-decoration: underline;">Uz</a></li>
-        </ul>
-    </div>
 </header>
+
+
